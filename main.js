@@ -11,17 +11,13 @@ var l9 = ['t', 'p', 'e', 'r', 'a', 'a', 'b', 's', 'p', 'i']
 
 var linhas = [l0, l1, l2, l3, l4, l5, l6, l7, l8, l9]
 
-// function selected(celula) {
-//   document.getElementById(`${celula}`).style.fontWeight = 'bold'
-// }
-
 document.getElementById('exibirTabela').innerHTML =
   ' <table>' +
   '<tr class="tr-1">' +
-  '<td class="td td-1-1">' +
-  l0[0] + 
+  '<td class="td">' +
+  l0[0] +
   '</td>' +
-  '<td class="td td-1-2">' +
+  '<td class="td">' +
   l0[1] +
   '</td>' +
   '<td class="td-1-3">' +
@@ -339,8 +335,38 @@ document.getElementById('exibirTabela').innerHTML =
   '</tr>' +
   ' </table>'
 
-var celula = document.querySelectorAll('td')
-celula.addEventListener('click', () => {
-  // celula.style.fontWeight = 'bold'
-  alert('funfou')
-})
+// var celula = document.getElementsByTagName('td')
+
+// for (var i = 0; i < celula.length; i++) {
+//   celula.item(i).addEventListener('click', () => {
+//     console.log('oi', celula.item(i).classList)
+//     if (celula.item(i).classList.contains('selected')) {
+//       console.log('1')
+//       celula.item(i).classList.remove('selected')
+//       return
+//     }
+//     if (!celula.item(i).classList.contains('selected')) {
+//       console.log('2')
+//       celula.item(i).classList.add('selected')
+//     }
+//   })
+// }
+
+// function generateRandomChar() {
+//   const characters = 'ABCDEFLMNNOPQRSTUVWXYZ'
+
+//   let result = ''
+//   result = characters.charAt(Math.floor(Math.random() * characters.length))
+
+//   return result
+// }
+
+// for (var j = 0; j < 20; j++) {
+//   var linha = linhas[j]
+//   for (var i = 0; i < 20; i++) {
+//     if (linha[i] == '') {
+//       var char = generateRandomChar()
+//       linha[i] = char
+//     }
+//   }
+// }
