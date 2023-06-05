@@ -1,3 +1,15 @@
+var btn = document.getElementById('btn')
+btn.addEventListener('click', () => {
+  var L = document.getElementById('num_rows').value
+  var C = document.getElementById('num_cols').value
+
+  document.querySelector('.formulario').style.display = 'none'
+  document.querySelector('.caca-palavras').style.display = 'flex'
+
+  document.getElementById('numeros').innerHTML =
+    '<h2 id="L">' + L + '</h2><h2>x</h2><h2 id="C">' + C + '</h2>'
+})
+
 var l0 = ['b', 'm', 'm', 'r', 'o', 'e', 'r', 'a', 'b', 'p']
 var l1 = ['k', 'r', 'r', 'y', 'b', 'i', 'y', 'w', 'q', 'o']
 var l2 = ['h', 'm', 'o', 'r', 'a', 'n', 'g', 'o', 'e', 'e']

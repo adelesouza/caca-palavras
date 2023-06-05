@@ -1,18 +1,45 @@
-body {
-  margin: 0;
-}
-.container {
-  width: 100vw;
-  height: 100vh;
+/* formulario */
+.formulario {
+  /* display: none; */
+  width: 150px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  text-align: center;
+}
+
+#titulo-formulario {
+  margin: 10px;
+}
+
+.inputs {
+  display: inline;
+}
+
+#num_rows,
+#num_cols {
+  width: 40px;
+  margin-bottom: 10px;
+}
+
+/* caca-palavras */
+.caca-palavras {
+  display: none;
+  /* display: flex; */
+  flex-direction: column;
+  text-align: center;
+}
+#cabecalho {
+  display: flex;
+  flex-direction: row;
 }
 #titulo {
   padding-right: 5px;
 }
-#exibir {
+#numeros {
+  display: flex;
+  flex-direction: row;
+}
+#exibirTabela {
   text-align: center;
 }
 td {
