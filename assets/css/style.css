@@ -1,5 +1,5 @@
 /* formulario */
-.formulario {
+.form {
   /* display: none; */
   width: 150px;
   display: flex;
@@ -7,7 +7,7 @@
   text-align: center;
 }
 
-#titulo-formulario {
+#form-title {
   margin: 10px;
 }
 
@@ -28,14 +28,14 @@
   flex-direction: column;
   text-align: center;
 }
-#cabecalho {
+#head {
   display: flex;
   flex-direction: row;
 }
-#titulo {
+#title {
   padding-right: 5px;
 }
-#numeros {
+#numbers {
   display: flex;
   flex-direction: row;
 }
