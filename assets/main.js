@@ -11,17 +11,14 @@ const words = [
   ['c', 'a', 'r', 'r', 'o'],
   ['c', 'a', 'i', 'x', 'a'],
   ['f', 'o', 't', 'o'],
-  ['f', 'l', 'o', 'r']
+  ['f', 'l', 'o', 'r'],
+  ['l', 'u', 'z']
 ]
 
 btn.addEventListener('click', () => {
-  // var L = document.getElementById('num_rows').value
-  // var C = document.getElementById('num_cols').value
+  var L = document.getElementById('num_rows').value //10
+  var C = document.getElementById('num_cols').value //15
 
-  var L = 10
-  var C = 15
-
-  document.querySelector('.form').style.display = 'none'
   document.querySelector('.caca-palavras').style.display = 'flex'
 
   document.getElementById('numbers').innerHTML =
@@ -65,14 +62,23 @@ function createTd(tr) {
 }
 
 function placeWords(wordsQuantity) {
+  const rowsWithWords = []
   var i = 0 //contador de palavras colocadas
-  var rowNumber = 0 //contador das rows (para que cada row, a partir da primeira, receba uma palavra)
   while (i < wordsQuantity) {
-    //rowNumber = generateRowNumber() AINDA NAO COLOQUEI ISSO
-    placeWordInline(rowNumber)
-    i++
-    rowNumber++
+    rowNumber = generateRowNumber() //gera aleatoriamente a linha em que a palavra vai ser colocada
+    if (!rowsWithWords.includes(rowNumber)) {
+      placeWordInline(rowNumber)
+      rowsWithWords.push(rowNumber)
+      i++
+    }
   }
+}
+
+function generateRowNumber() {
+  var numbersOfRows = document.getElementById('num_rows').value
+  var randomRowNumber = Math.floor(Math.random() * numbersOfRows)
+
+  return randomRowNumber
 }
 
 function placeWordInline(rowNumber) {
@@ -80,58 +86,49 @@ function placeWordInline(rowNumber) {
   var firstIndex = generateFirstIndex(word) //esse método gera o index dentro do row onde a palavra vai iniciar
   var lastIndex = firstIndex + word.length //essa variável armazena o index onde a última letra da palavra vai ficar
 
-  var linhas = table.getElementsByTagName('tr')
+  var rowsList = table.getElementsByTagName('tr')
 
-  for (i = 0; i < linhas.length; i++) {
+  for (i = 0; i < rowsList.length; i++) {
     //esse loop percorre todas as linhas da tabela
     if (rowNumber == i) {
-      var linha = linhas[i] //essa variavel armazena a linha  atual
-      var x = 0 //contador do index da palavra
-      for (j = firstIndex; j <= lastIndex; j++) {
-        linha.cells[j].textContent = word[x] //muda o Text Content da celula atual para a letra do index atual da palavra
-        x++
+      var row = rowsList[i] //essa variavel armazena a linha  atual
+      var wordIndexCounter = 0 //contador do index da palavra
+      for (j = firstIndex; j < lastIndex; j++) {
+        row.cells[j].textContent = word[wordIndexCounter] //muda o Text Content da celula atual para a letra do index atual da palavra
+        wordIndexCounter++
       }
     }
   }
 }
 
 function calculateWordsQuantity(L) {
-  var result = L - (L % 3) / 3
-  return result
+  var wordsQuantity = (L - (L % 3)) / 3
+  return wordsQuantity
 }
 
 function generateRandomChar() {
   const characters = 'ABCDEFLMNNOPQRSTUVWXYZ'
 
-  var result = ''
-  result = characters.charAt(Math.floor(Math.random() * characters.length))
+  var charGenerated = ''
+  charGenerated = characters.charAt(
+    Math.floor(Math.random() * characters.length)
+  )
 
-  return result
+  return charGenerated
 }
 
 function generateRandomWord(words) {
-  var result = words[Math.floor(Math.random() * words.length)]
-  words.splice(words.indexOf(result), 1)
-  return result
+  var wordGenerated = words[Math.floor(Math.random() * words.length)]
+  words.splice(words.indexOf(wordGenerated), 1)
+  return wordGenerated
 }
 
 function generateFirstIndex(word) {
-  var linhas = table.getElementsByTagName('tr')
-  var indexs = linhas.length
-  var x = word.length
-  var ultimoFirstIndexPermitido = indexs - x
+  var numberOfColumnsInRow = document.getElementById('num_cols').value
+  var wordLength = word.length
+  var ultimoFirstIndexPermitido = numberOfColumnsInRow - wordLength + 1
 
-  var numbers = '0'
+  var result = Math.floor(Math.random() * ultimoFirstIndexPermitido)
 
-  var i = 0
-  while (i <= ultimoFirstIndexPermitido) {
-    i.toString()
-    numbers.concat('', i)
-    i++
-  }
-
-  console.log(numbers)
-
-  var result = numbers.charAt(Math.floor(Math.random() * numbers.length))
   return result
 }
