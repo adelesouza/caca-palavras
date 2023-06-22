@@ -1,17 +1,51 @@
+body {
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: row;
+  background-color: #ffab2c;
+}
+h2 {
+  margin: 0;
+  font-size: 20px;
+  font-family: roboto;
+  color: #ffab2c;
+}
+
 /* formulario */
 .form {
-  width: 150px;
   display: flex;
   flex-direction: column;
   text-align: center;
+  margin: auto;
+  margin-top: 50px;
+  width: 20%;
+  align-items: center;
 }
 
 #form-title {
-  margin: 10px;
+  box-shadow: 5px 5px white;
+  background-color: #ffea7a;
+  padding: 4px;
+  margin-bottom: 20px;
+  width: 100%;
+  justify-content: center;
 }
 
 .inputs {
   display: inline;
+  margin-bottom: 10px;
+}
+
+#btn {
+  border: none;
+  padding: 5px;
+  text-decoration: none;
+  border-radius: 5px;
+  width: fit-content;
+  font-family: roboto;
+  font-size: 15px;
 }
 
 #num_rows,
@@ -25,27 +59,42 @@
   /* display: flex; */
   display: none;
   flex-direction: column;
-  text-align: center;
+  margin-right: auto;
+  margin-top: 50px;
+  align-items: center;
 }
 #head {
   display: flex;
   flex-direction: row;
-}
-#title {
-  padding-right: 5px;
+  box-shadow: 5px 5px white;
+  background-color: #ffea7a;
+  margin-bottom: 20px;
+  padding: 4px;
+  width: 100%;
+  justify-content: center;
 }
 #numbers {
   display: flex;
   flex-direction: row;
+  margin-left: 5px;
 }
 #exibirTabela {
   text-align: center;
 }
+#table {
+  border: 10px solid #ffea7a;
+}
+table {
+  width: 100%;
+}
 td {
+  background-color: white;
   height: 3px;
   width: 18px;
   margin: 0;
   padding: 0;
+  text-align: center;
+  border-radius: 1.5px;
 }
 .selected {
   font-weight: 800;
