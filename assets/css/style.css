@@ -56,8 +56,8 @@ h2 {
 
 /* caca-palavras */
 .caca-palavras {
-  display: none;
   /* display: flex; */
+  display: none;
   flex-direction: column;
   margin-right: auto;
   margin-top: 50px;
