@@ -1,5 +1,3 @@
-const btn = document.getElementById('btn')
-
 const words = [
   ['p', 'a', 'l', 'h', 'e', 't', 'a'],
   ['u', 'v', 'a'],
@@ -15,7 +13,11 @@ const words = [
   ['l', 'u', 'z']
 ]
 
-btn.addEventListener('click', () => {
+// const words = ['palheta', 'uva', 'musica']
+
+const btn = document.getElementById('btn')
+
+function initWordSearch() {
   var L = document.getElementById('num_rows').value //10
   var C = document.getElementById('num_cols').value //15
 
@@ -24,26 +26,29 @@ btn.addEventListener('click', () => {
   document.getElementById('numbers').innerHTML =
     '<h2 id="L">' + L + '</h2><h2>x</h2><h2 id="C">' + C + '</h2>'
 
-  createCrossword(L, C)
-})
+  createWordSearch(L, C)
+}
 
-function createCrossword(L, C) {
+btn.addEventListener('click', initWordSearch)
+
+function createWordSearch(L, C) {
+  const wordSearchContainer = document.getElementById('table')
+  while (wordSearchContainer.firstChild) {
+    wordSearchContainer.removeChild(wordSearchContainer.firstChild)
+  }
   const table = document.createElement('table')
-  document.getElementById('table').appendChild(table)
+  wordSearchContainer.appendChild(table)
 
-  //criacao da estrutura de dados tabela:
   for (i = 0; i < L; i++) {
     var tr = createTr(table)
 
     for (j = 0; j < C; j++) {
       createTd(tr)
-      //esse método, entre outras funções, preenche a tabela com caracteres aleatórios
     }
   }
 
-  var wordsQuantity = calculateWordsQuantity(L) //esse método calcula o número de palavras que vão ser colocadas, baseado no número de linhas da tabela
+  var wordsQuantity = calculateWordsQuantity(L)
 
-  //colocação das palavras:
   placeWords(wordsQuantity)
 }
 
@@ -82,48 +87,37 @@ function generateRowNumber() {
 }
 
 function placeWordInline(rowNumber) {
-  var word = generateRandomWord(words) //esse método gera uma palavra aleatória dentro da lista de palavras
-  var firstIndex = generateFirstIndex(word) //esse método gera o index dentro do row onde a palavra vai iniciar
-  var lastIndex = firstIndex + word.length //essa variável armazena o index onde a última letra da palavra vai ficar
-
+  const wordsCopy = [...words]
+  var word = getRandomWord(wordsCopy)
+  var firstCharIndex = generateFirstCharIndex(word)
+  var lastCharIndex = firstCharIndex + word.length
   var rowsList = table.getElementsByTagName('tr')
-
   for (i = 0; i < rowsList.length; i++) {
-    //esse loop percorre todas as linhas da tabela
     if (rowNumber == i) {
-      var row = rowsList[i] //essa variavel armazena a linha  atual
-      var wordIndexCounter = 0 //contador do index da palavra
-      for (j = firstIndex; j < lastIndex; j++) {
-        row.cells[j].textContent = word[wordIndexCounter] //muda o Text Content da celula atual para a letra do index atual da palavra
+      var currentRow = rowsList[i]
+      var wordIndexCounter = 0
+      for (j = firstCharIndex; j < lastCharIndex; j++) {
+        currentRow.cells[j].textContent = word[wordIndexCounter]
         wordIndexCounter++
       }
     }
   }
 }
 
-function calculateWordsQuantity(L) {
-  var wordsQuantity = (L - (L % 3)) / 3
-  return wordsQuantity
+function calculateWordsQuantity(numRows, rowsPerWord=3) {
+  return Math.round(numRows / rowsPerWord)
 }
 
-function generateRandomChar() {
-  const characters = 'ABCDEFLMNNOPQRSTUVWXYZ'
-
-  var charGenerated = ''
-  charGenerated = characters.charAt(
-    Math.floor(Math.random() * characters.length)
-  )
-
-  return charGenerated
+function generateRandomChar(characters='ABCDEFLMNNOPQRSTUVWXYZ') {
+  return characters.charAt(Math.floor(Math.random() * characters.length))
 }
 
-function generateRandomWord(words) {
-  var wordGenerated = words[Math.floor(Math.random() * words.length)]
-  words.splice(words.indexOf(wordGenerated), 1)
-  return wordGenerated
+function getRandomWord(words) {
+  const randomWordIndex = Math.floor(Math.random() * words.length)
+  return words.splice(randomWordIndex, 1)[0]
 }
 
-function generateFirstIndex(word) {
+function generateFirstCharIndex(word) {
   var numberOfColumnsInRow = document.getElementById('num_cols').value
   var wordLength = word.length
   var ultimoFirstIndexPermitido = numberOfColumnsInRow - wordLength + 1
