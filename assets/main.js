@@ -1,16 +1,16 @@
 const words = [
-  ['p', 'a', 'l', 'h', 'e', 't', 'a'],
-  ['u', 'v', 'a'],
-  ['m', 'u', 's', 'i', 'c', 'a'],
-  ['p', 'a', 'l', 'c', 'o'],
-  ['r', 'u', 'a'],
-  ['c', 'a', 's', 'a'],
-  ['p', 'i', 'n', 'c', 'e', 'l'],
-  ['c', 'a', 'r', 'r', 'o'],
-  ['c', 'a', 'i', 'x', 'a'],
-  ['f', 'o', 't', 'o'],
-  ['f', 'l', 'o', 'r'],
-  ['l', 'u', 'z']
+  'palheta',
+  'uva',
+  'musica',
+  'palco',
+  'rua',
+  'casa',
+  'pincel',
+  'carro',
+  'caixa',
+  'foto',
+  'flor',
+  'luz'
 ]
 
 const btn = document.getElementById('btn')
@@ -51,16 +51,14 @@ function createWordSearch(numRows, numCols) {
 
 function createTr(table) {
   const tr = document.createElement('tr')
-  table.appendChild(tr)
-  return tr
+  return table.appendChild(tr)
 }
 
 function createTd(tr) {
   const td = document.createElement('td')
-  var char = document.createTextNode(generateRandomChar())
+  const char = document.createTextNode(generateRandomChar())
   td.appendChild(char)
-  tr.appendChild(td)
-  return td
+  return tr.appendChild(td)
 }
 
 function placeWords(wordsQuantity) {
@@ -84,15 +82,16 @@ function getRandomRowToPlaceWord() {
 
 function placeWordInline(wordsListCopy, rowNumber) {
   var word = getRandomWord(wordsListCopy)
-  var firstCharIndex = generateFirstCharIndex(word)
-  var lastCharIndex = firstCharIndex + word.length
+  var wordSplited = word.split('')
+  var firstCharIndex = generateFirstCharIndex(wordSplited)
+  var lastCharIndex = firstCharIndex + wordSplited.length
   var rowsList = table.getElementsByTagName('tr')
   for (i = 0; i < rowsList.length; i++) {
     if (rowNumber == i) {
       var currentRow = rowsList[i]
       var wordIndexCounter = 0
       for (j = firstCharIndex; j < lastCharIndex; j++) {
-        currentRow.cells[j].textContent = word[wordIndexCounter]
+        currentRow.cells[j].textContent = wordSplited[wordIndexCounter]
         wordIndexCounter++
       }
     }
