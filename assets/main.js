@@ -13,25 +13,23 @@ const words = [
   ['l', 'u', 'z']
 ]
 
-// const words = ['palheta', 'uva', 'musica']
-
 const btn = document.getElementById('btn')
 
 function initWordSearch() {
-  var L = document.getElementById('num_rows').value //10
-  var C = document.getElementById('num_cols').value //15
+  var numRows = document.getElementById('num_rows').value //10
+  var numCols = document.getElementById('num_cols').value //15
 
   document.querySelector('.caca-palavras').style.display = 'flex'
 
   document.getElementById('numbers').innerHTML =
-    '<h2 id="L">' + L + '</h2><h2>x</h2><h2 id="C">' + C + '</h2>'
+    '<h2 id="L">' + numRows + '</h2><h2>x</h2><h2 id="C">' + numCols + '</h2>'
 
-  createWordSearch(L, C)
+  createWordSearch(numRows, numCols)
 }
 
 btn.addEventListener('click', initWordSearch)
 
-function createWordSearch(L, C) {
+function createWordSearch(numRows, numCols) {
   const wordSearchContainer = document.getElementById('table')
   while (wordSearchContainer.firstChild) {
     wordSearchContainer.removeChild(wordSearchContainer.firstChild)
@@ -39,15 +37,14 @@ function createWordSearch(L, C) {
   const table = document.createElement('table')
   wordSearchContainer.appendChild(table)
 
-  for (i = 0; i < L; i++) {
+  for (i = 0; i < numRows; i++) {
     var tr = createTr(table)
-
-    for (j = 0; j < C; j++) {
+    for (j = 0; j < numCols; j++) {
       createTd(tr)
     }
   }
 
-  var wordsQuantity = calculateWordsQuantity(L)
+  var wordsQuantity = calculateWordsQuantity(numRows)
 
   placeWords(wordsQuantity)
 }
@@ -67,28 +64,26 @@ function createTd(tr) {
 }
 
 function placeWords(wordsQuantity) {
+  const wordsListCopy = [...words]
   const rowsWithWords = []
-  var i = 0 //contador de palavras colocadas
-  while (i < wordsQuantity) {
-    rowNumber = generateRowNumber() //gera aleatoriamente a linha em que a palavra vai ser colocada
+  var wordsPlacedCounter = 0
+  while (wordsPlacedCounter < wordsQuantity) {
+    rowNumber = getRandomRowToPlaceWord()
     if (!rowsWithWords.includes(rowNumber)) {
-      placeWordInline(rowNumber)
+      placeWordInline(wordsListCopy, rowNumber)
       rowsWithWords.push(rowNumber)
-      i++
+      wordsPlacedCounter++
     }
   }
 }
 
-function generateRowNumber() {
-  var numbersOfRows = document.getElementById('num_rows').value
-  var randomRowNumber = Math.floor(Math.random() * numbersOfRows)
-
-  return randomRowNumber
+function getRandomRowToPlaceWord() {
+  const numbersOfRows = document.getElementById('num_rows').value
+  return Math.floor(Math.random() * numbersOfRows)
 }
 
-function placeWordInline(rowNumber) {
-  const wordsCopy = [...words]
-  var word = getRandomWord(wordsCopy)
+function placeWordInline(wordsListCopy, rowNumber) {
+  var word = getRandomWord(wordsListCopy)
   var firstCharIndex = generateFirstCharIndex(word)
   var lastCharIndex = firstCharIndex + word.length
   var rowsList = table.getElementsByTagName('tr')
@@ -104,25 +99,22 @@ function placeWordInline(rowNumber) {
   }
 }
 
-function calculateWordsQuantity(numRows, rowsPerWord=3) {
+function calculateWordsQuantity(numRows, rowsPerWord = 3) {
   return Math.round(numRows / rowsPerWord)
 }
 
-function generateRandomChar(characters='ABCDEFLMNNOPQRSTUVWXYZ') {
+function generateRandomChar(characters = 'ABCDEFLMNNOPQRSTUVWXYZ') {
   return characters.charAt(Math.floor(Math.random() * characters.length))
 }
 
-function getRandomWord(words) {
-  const randomWordIndex = Math.floor(Math.random() * words.length)
-  return words.splice(randomWordIndex, 1)[0]
+function getRandomWord(wordsList) {
+  const randomWordIndex = Math.floor(Math.random() * wordsList.length)
+  return wordsList.splice(randomWordIndex, 1)[0]
 }
 
 function generateFirstCharIndex(word) {
   var numberOfColumnsInRow = document.getElementById('num_cols').value
   var wordLength = word.length
   var ultimoFirstIndexPermitido = numberOfColumnsInRow - wordLength + 1
-
-  var result = Math.floor(Math.random() * ultimoFirstIndexPermitido)
-
-  return result
+  return Math.floor(Math.random() * ultimoFirstIndexPermitido)
 }
