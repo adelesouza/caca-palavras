@@ -16,8 +16,8 @@ const words = [
 const btn = document.getElementById('btn')
 
 function initWordSearch() {
-  var numRows = document.getElementById('num_rows').value //10
-  var numCols = document.getElementById('num_cols').value //15
+  var numRows = document.getElementById('num_rows').value
+  var numCols = document.getElementById('num_cols').value
 
   document.querySelector('.caca-palavras').style.display = 'flex'
 
