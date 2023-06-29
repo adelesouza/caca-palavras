@@ -5,7 +5,24 @@
 
 ---
 
+### Setup
+
+```console
+$ git clone git@github.com:adelesouza/caca-palavras.git
+$ cd caca-palavras
+$ npm install
+```
+
+### Testing
+
+```console
+$ cd src
+$ npm run test -- --watch
+```
+
+
 ### Configurações VSCode
+
 
 ```json
 {

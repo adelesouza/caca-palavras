@@ -1,3 +1,6 @@
+import { calculateWordsQuantity, generateRandomChar, getRandomWord } from './utils.js'
+
+
 const words = [
   'palheta',
   'uva',
@@ -37,9 +40,9 @@ function createWordSearch(numRows, numCols) {
   const table = document.createElement('table')
   wordSearchContainer.appendChild(table)
 
-  for (i = 0; i < numRows; i++) {
+  for (let i = 0; i < numRows; i++) {
     var tr = createTr(table)
-    for (j = 0; j < numCols; j++) {
+    for (let j = 0; j < numCols; j++) {
       createTd(tr)
     }
   }
@@ -66,7 +69,7 @@ function placeWords(wordsQuantity) {
   const rowsWithWords = []
   var wordsPlacedCounter = 0
   while (wordsPlacedCounter < wordsQuantity) {
-    rowNumber = getRandomRowToPlaceWord()
+    const rowNumber = getRandomRowToPlaceWord()
     if (!rowsWithWords.includes(rowNumber)) {
       placeWordInline(wordsListCopy, rowNumber)
       rowsWithWords.push(rowNumber)
@@ -86,29 +89,16 @@ function placeWordInline(wordsListCopy, rowNumber) {
   var firstCharIndex = generateFirstCharIndex(wordSplited)
   var lastCharIndex = firstCharIndex + wordSplited.length
   var rowsList = table.getElementsByTagName('tr')
-  for (i = 0; i < rowsList.length; i++) {
+  for (let i = 0; i < rowsList.length; i++) {
     if (rowNumber == i) {
       var currentRow = rowsList[i]
       var wordIndexCounter = 0
-      for (j = firstCharIndex; j < lastCharIndex; j++) {
+      for (let j = firstCharIndex; j < lastCharIndex; j++) {
         currentRow.cells[j].textContent = wordSplited[wordIndexCounter]
         wordIndexCounter++
       }
     }
   }
-}
-
-function calculateWordsQuantity(numRows, rowsPerWord = 3) {
-  return Math.round(numRows / rowsPerWord)
-}
-
-function generateRandomChar(characters = 'ABCDEFLMNNOPQRSTUVWXYZ') {
-  return characters.charAt(Math.floor(Math.random() * characters.length))
-}
-
-function getRandomWord(wordsList) {
-  const randomWordIndex = Math.floor(Math.random() * wordsList.length)
-  return wordsList.splice(randomWordIndex, 1)[0]
 }
 
 function generateFirstCharIndex(word) {
