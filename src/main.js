@@ -1,3 +1,6 @@
+import { calculateWordsQuantity, generateRandomChar, getRandomWord } from './utils.js'
+
+
 const words = [
   'palheta',
   'uva',
@@ -96,19 +99,6 @@ function placeWordInline(wordsListCopy, rowNumber) {
       }
     }
   }
-}
-
-function calculateWordsQuantity(numRows, rowsPerWord = 3) {
-  return Math.round(numRows / rowsPerWord)
-}
-
-function generateRandomChar(characters = 'ABCDEFLMNNOPQRSTUVWXYZ') {
-  return characters.charAt(Math.floor(Math.random() * characters.length))
-}
-
-function getRandomWord(wordsList) {
-  const randomWordIndex = Math.floor(Math.random() * wordsList.length)
-  return wordsList.splice(randomWordIndex, 1)[0]
 }
 
 function generateFirstCharIndex(word) {
