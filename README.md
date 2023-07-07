@@ -1,6 +1,6 @@
 # Caça-palavras
 
-- https://adelesouza.github.io/caca-palavras
+- [https://adelesouza.github.io/caca-palavras](https://adelesouza.github.io/caca-palavras/src/index.html)
 - Pequena aplicação que gera um novo caça-palavras automaticamente de acordo com os parâmetros do usuário.
 
 ---
