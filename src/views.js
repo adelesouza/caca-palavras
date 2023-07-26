@@ -10,7 +10,5 @@ export function createHtmlTable(dataTable) {
       tr.appendChild(td)
     }
   }
-
-  exibir.appendChild(table)
   return table
 }

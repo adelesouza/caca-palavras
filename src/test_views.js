@@ -13,8 +13,32 @@ describe('Funçao createHtmlTable()', () => {
     ['M', 'Y', 'R', 'Z', 'Y', 'N', 'C', 'W', 'Y', 'D', 'E', 'F', 'L', 'F', 'T'],
     ['P', 'P', 'D', 'P', 'Z', 'L', 'S', 'Z', 'V', 'V', 'P', 'L', 'D', 'P', 'T']
   ]
-
   test('verifica se a tabela retornada é um elemento html', () => {
     expect(typeof createHtmlTable(dataTableSample)).toBe('object')
+  })
+  test('verifica se a tabela retornada é um elemento html do tipo table', () => {
+    const table = createHtmlTable(dataTableSample)
+    expect(table.nodeName).toBe('TABLE')
+  })
+  test('verifica se os filhos da tabela retornada são elementos html do tipo tr e td', () => {
+    const table = createHtmlTable(dataTableSample)
+    for (let i = 0; i < table.childElementCount; i++) {
+      expect(table.children[i].nodeName).toBe('TR')
+      let td = table.children[i]
+      for (let j = 0; j < td.childElementCount; j++) {
+        expect(td.children[j].nodeName).toBe('TD')
+      }
+    }
+  })
+  test('verifica se as letras da tabela correspondem aos da dataTable', () => {
+    const table = createHtmlTable(dataTableSample)
+    for (let i = 0; i < table.childElementCount; i++) {
+      let td = table.children[i]
+      for (let j = 0; j < td.childElementCount; j++) {
+        let char = td.children[j].textContent
+        let charExpected = dataTableSample[i][j]
+        expect(char).toBe(charExpected)
+      }
+    }
   })
 })
