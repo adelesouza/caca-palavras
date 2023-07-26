@@ -18,6 +18,7 @@ $ npm install
 ```console
 $ cd src
 $ npm run test -- --watch
+$Env:NODE_OPTIONS = "--experimental-vm-modules"
 ```
 
 
