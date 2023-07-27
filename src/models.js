@@ -14,24 +14,17 @@ const words = [
 ]
 
 export function createDataTable(numRows, numCols) {
-  var tableWithoutWords = []
-  for (var i = 0; i < numRows; i++) {
+  let tableWithoutWords = []
+  for (let i = 0; i < numRows; i++) {
     const row = []
-    for (var j = 0; j < numCols; j++) {
+    for (let j = 0; j < numCols; j++) {
       row.push(' ')
     }
     tableWithoutWords.push(row)
   }
-
-  var tableWithWords = placeWords(
-    calculateWordsQuantity(numRows),
-    tableWithoutWords,
-    numCols,
-    numRows
-  )
-
-  var dataTable = fillTable(tableWithWords)
-
+  const wordsQuantity = calculateWordsQuantity(numRows, 3)
+  const tableWithWords = placeWords(wordsQuantity, tableWithoutWords)
+  const dataTable = fillTable(tableWithWords)
   return dataTable
 }
 
@@ -39,26 +32,26 @@ export function generateRandomChar(characters = 'ABCDEFLMNNOPQRSTUVWXYZ') {
   return characters.charAt(Math.floor(Math.random() * characters.length))
 }
 
-export function calculateWordsQuantity(numRows, rowsPerWord) {
+export function calculateWordsQuantity(numRows, rowsPerWord = 3) {
   return Math.floor(numRows / rowsPerWord)
 }
 
 export function placeWords(wordsQuantity, tableToPlaceWords) {
-  var numRows = tableToPlaceWords.length
-  var numCols = tableToPlaceWords[0].length
+  let numRows = tableToPlaceWords.length
+  let numCols = tableToPlaceWords[0].length
   const availableWordsList = [...words]
   const rowsWithWords = []
-  var wordsPlaced = 0
+  const wordsPlaced = 0
   while (wordsPlaced < wordsQuantity) {
-    var rowToPlaceWord = getRandomRowToPlaceWord(numRows)
+    const rowToPlaceWord = getRandomRowToPlaceWord(numRows)
     if (!rowsWithWords.includes(rowToPlaceWord)) {
-      var word = getRandomWord(availableWordsList)
-      var wordSplited = word.split('')
-      var firstCharIndex = generateFirstCharIndex(wordSplited, numCols)
-      var lastCharIndex = firstCharIndex + wordSplited.length
-      var wordIndexCounter = 0
+      let word = getRandomWord(availableWordsList)
+      let wordSplited = word.split('')
+      let firstCharIndex = generateFirstCharIndex(wordSplited, numCols)
+      let lastCharIndex = firstCharIndex + wordSplited.length
+      let wordIndexCounter = 0
 
-      for (var i = firstCharIndex; i < lastCharIndex; i++) {
+      for (let i = firstCharIndex; i < lastCharIndex; i++) {
         tableToPlaceWords[rowToPlaceWord][i] = wordSplited[wordIndexCounter]
         wordIndexCounter++
       }
@@ -66,13 +59,12 @@ export function placeWords(wordsQuantity, tableToPlaceWords) {
       wordsPlaced++
     }
   }
-
   return tableToPlaceWords
 }
 
 export function generateFirstCharIndex(word, numCols) {
-  var wordLength = word.length
-  var ultimoFirstIndexPermitido = numCols - wordLength + 1
+  const wordLength = word.length
+  const ultimoFirstIndexPermitido = numCols - wordLength + 1
   return Math.floor(Math.random() * ultimoFirstIndexPermitido)
 }
 
@@ -86,8 +78,8 @@ export function getRandomWord(availableWordsList) {
 }
 
 export function fillTable(tableWithWords) {
-  for (var i = 0; i < tableWithWords.length; i++) {
-    for (var j = 0; j < tableWithWords[i].length; j++) {
+  for (let i = 0; i < tableWithWords.length; i++) {
+    for (let j = 0; j < tableWithWords[i].length; j++) {
       if (tableWithWords[i][j] == ' ') {
         tableWithWords[i][j] = generateRandomChar()
       }

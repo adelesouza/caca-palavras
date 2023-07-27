@@ -41,7 +41,6 @@ describe('funcao calculateWordsQuantity()', () => {
 })
 
 describe('funcao placeWords()', () => {
-  //ta errado:
   test('verifica se o numero de palavras colocadas está correto', () => {
     const tableAux = [
       [
@@ -215,15 +214,13 @@ describe('funcao placeWords()', () => {
         ' '
       ]
     ]
-
     const tableWithWords = placeWords(3, tableAux)
     var rowsWithWordsCounter = 0
-
     for (var i = 0; i < tableWithWords.length; i++) {
       for (var j = 0; j < tableWithWords[i].length; j++) {
         if (tableWithWords[i][j] != ' ') {
           rowsWithWordsCounter++
-          return
+          break
         }
       }
     }
