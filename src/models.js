@@ -41,7 +41,7 @@ export function placeWords(wordsQuantity, tableToPlaceWords) {
   let numCols = tableToPlaceWords[0].length
   const availableWordsList = [...words]
   const rowsWithWords = []
-  const wordsPlaced = 0
+  let wordsPlaced = 0
   while (wordsPlaced < wordsQuantity) {
     const rowToPlaceWord = getRandomRowToPlaceWord(numRows)
     if (!rowsWithWords.includes(rowToPlaceWord)) {
