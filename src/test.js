@@ -1,6 +1,5 @@
 import { calculateWordsQuantity, generateRandomChar } from './utils.js'
 
-
 test('testa a calculateWordsQuantity', () => {
   expect(calculateWordsQuantity(30)).toBe(10)
   expect(calculateWordsQuantity(30, 3)).toBe(10)

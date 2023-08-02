@@ -215,9 +215,9 @@ describe('funcao placeWords()', () => {
       ]
     ]
     const tableWithWords = placeWords(3, tableAux)
-    var rowsWithWordsCounter = 0
-    for (var i = 0; i < tableWithWords.length; i++) {
-      for (var j = 0; j < tableWithWords[i].length; j++) {
+    let rowsWithWordsCounter = 0
+    for (let i = 0; i < tableWithWords.length; i++) {
+      for (let j = 0; j < tableWithWords[i].length; j++) {
         if (tableWithWords[i][j] != ' ') {
           rowsWithWordsCounter++
           break
@@ -234,19 +234,19 @@ describe('funcao generateFirstCharIndex()', () => {
     expect(typeof generateFirstCharIndex('adele', 10)).toBe('number')
   })
   test('verifica se a palavra cabe com esse index gerado', () => {
-    var word = 'teste'
-    var index = generateFirstCharIndex(word, 15)
+    const word = 'teste'
+    const index = generateFirstCharIndex(word, 15)
     expect(index).toBeLessThanOrEqual(15 - word.length + 1)
   })
 })
 
 describe('funcao getRandomRowToPlaceWord()', () => {
   test('verifica se funcao retorna um numero', () => {
-    var numRows = 30
+    const numRows = 30
     expect(typeof getRandomRowToPlaceWord(numRows)).toBe('number')
   })
   test('verifica se numero retornado é menor ou igual ao numero de rows', () => {
-    var numRows = 14
+    const numRows = 14
     expect(getRandomRowToPlaceWord(numRows)).toBeLessThanOrEqual(numRows)
   })
 })
@@ -270,7 +270,7 @@ describe('funcao getRandomWord()', () => {
     expect(typeof getRandomWord(wordsSample)).toBe('string')
   })
   test('verifica se não retorna a mesma string mais de uma vez', () => {
-    var randomWord = getRandomWord(wordsSample)
+    const randomWord = getRandomWord(wordsSample)
     expect(wordsSample.includes(randomWord)).toBe(false)
   })
 })
@@ -293,9 +293,9 @@ describe('funcao fillTable()', () => {
   })
   test('verifica se todos os espaços estão preenchidos', () => {
     const dataTable = fillTable(tableWithWordsSample)
-    var allSpacesFilled = true
-    for (var i = 0; i < dataTable.length; i++) {
-      for (var j = 0; j < dataTable[i].length; j++) {
+    let allSpacesFilled = true
+    for (let i = 0; i < dataTable.length; i++) {
+      for (let j = 0; j < dataTable[i].length; j++) {
         if (dataTable[i][j] == ' ') {
           allSpacesFilled = false
         }
