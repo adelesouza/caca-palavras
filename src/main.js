@@ -1,7 +1,7 @@
 import { createDataTable } from './models.js'
 import { createHtmlTable } from './views.js'
 
-const btn = document.getElementById('btn')
+document.getElementById('btn').addEventListener('click', revealTable)
 
 function revealTable() {
   const numRows = document.getElementById('num_rows').value
@@ -25,5 +25,3 @@ function appendTableToContainer(table) {
   }
   wordSearchContainer.appendChild(table)
 }
-
-btn.addEventListener('click', revealTable)
