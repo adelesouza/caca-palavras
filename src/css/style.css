@@ -20,7 +20,6 @@ h2 {
   text-align: center;
   margin: auto;
   margin-top: 50px;
-  width: 20%;
   align-items: center;
 }
 
@@ -30,7 +29,6 @@ h2 {
   padding: 4px;
   margin-bottom: 20px;
   width: 100%;
-  justify-content: center;
 }
 
 .inputs {
@@ -98,4 +96,16 @@ td {
 }
 .selected {
   font-weight: 800;
+}
+
+@media (max-width: 800px) {
+  body {
+    flex-direction: column;
+  }
+  .caca-palavras {
+    margin: 50px auto 50px auto;
+  }
+  h2 {
+    font-size: 1em;
+  }
 }
