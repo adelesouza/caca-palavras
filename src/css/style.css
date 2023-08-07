@@ -81,16 +81,17 @@ h2 {
 }
 #table {
   border: 10px solid #ffea7a;
+  text-transform: uppercase;
 }
-table {
+/* table {
   width: 100%;
-}
+} */
 td {
   background-color: white;
   height: 3px;
   width: 18px;
   margin: 0;
-  padding: 0;
+  padding: 2.5px;
   text-align: center;
   border-radius: 1.5px;
 }
