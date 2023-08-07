@@ -26,9 +26,11 @@ h2 {
 #form-title {
   box-shadow: 5px 5px white;
   background-color: #ffea7a;
-  padding: 4px;
+  padding: 10px 4px 0px 4px;
   margin-bottom: 20px;
   width: 100%;
+  font-family: 'Borel', cursive;
+  text-align: center;
 }
 
 .inputs {
@@ -42,7 +44,7 @@ h2 {
   text-decoration: none;
   border-radius: 5px;
   width: fit-content;
-  font-family: roboto;
+  font-family: 'Roboto', sans-serif;
   font-size: 15px;
 }
 
@@ -67,25 +69,24 @@ h2 {
   box-shadow: 5px 5px white;
   background-color: #ffea7a;
   margin-bottom: 20px;
-  padding: 4px;
+  padding: 10px 4px 0px 4px;
   width: 100%;
   justify-content: center;
+}
+#title,
+#numbers {
+  font-family: 'Borel', cursive;
 }
 #numbers {
   display: flex;
   flex-direction: row;
   margin-left: 5px;
 }
-#exibirTabela {
-  text-align: center;
-}
 #table {
   border: 10px solid #ffea7a;
+  font-family: 'Roboto', sans-serif;
   text-transform: uppercase;
 }
-/* table {
-  width: 100%;
-} */
 td {
   background-color: white;
   height: 3px;
