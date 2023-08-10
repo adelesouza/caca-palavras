@@ -32,21 +32,24 @@ function revealTable() {
   const table = createHtmlTable(dataTable)
   adjustFrontElements(numRows, numCols, wordsToPlace)
   appendTableToContainer(table)
-  console.log('teste')
 }
 
 function adjustFrontElements(numRows, numCols, wordsToPlace) {
   document.querySelector('.caca-palavras').style.display = 'flex'
   document.getElementById('numbers').innerHTML =
     '<h2 id="L">' + numRows + '</h2><h2>x</h2><h2 id="C">' + numCols + '</h2>'
-
+  const words = document.getElementById('words')
+  while (words.firstChild) {
+    words.removeChild(words.firstChild)
+  }
   for (let i = 0; i < wordsToPlace.length; i++) {
-    const words = document.getElementById('words')
-    const word = document.createTextNode(wordsToPlace[i] + ' - ')
-    while (words.firstChild) {
-      words.removeChild(words.firstChild)
+    if (i == wordsToPlace.length - 1) {
+      const word = document.createTextNode(wordsToPlace[i])
+      words.appendChild(word)
+    } else {
+      const word = document.createTextNode(wordsToPlace[i] + ' - ')
+      words.appendChild(word)
     }
-    words.appendChild(word)
   }
 }
 

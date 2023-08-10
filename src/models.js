@@ -28,27 +28,27 @@ export function calculateWordsQuantity(numRows, rowsPerWord = 3) {
 export function placeWords(wordsToPlace, wordsQuantity, tableToPlaceWords) {
   let numRows = tableToPlaceWords.length
   let numCols = tableToPlaceWords[0].length
-  //const availableWordsList = [...words]
   const rowsWithWords = []
   let wordsPlaced = 0
-  let j = 0
-  while (wordsPlaced < wordsQuantity) {
-    const rowToPlaceWord = getRandomRowToPlaceWord(numRows)
-    if (!rowsWithWords.includes(rowToPlaceWord)) {
-      let word = wordsToPlace[j] //getRandomWord(availableWordsList)
-      j++
-      let wordSplited = word.split('')
-      let firstCharIndex = generateFirstCharIndex(wordSplited, numCols)
-      let lastCharIndex = firstCharIndex + wordSplited.length
-      let wordIndexCounter = 0
-      for (let i = firstCharIndex; i < lastCharIndex; i++) {
-        tableToPlaceWords[rowToPlaceWord][i] = wordSplited[wordIndexCounter]
-        wordIndexCounter++
+  for (let j = 0; wordsPlaced < wordsQuantity; j++) {
+    while (wordsPlaced < wordsQuantity) {
+      const rowToPlaceWord = getRandomRowToPlaceWord(numRows)
+      if (!rowsWithWords.includes(rowToPlaceWord)) {
+        let word = wordsToPlace[j] //getRandomWord(availableWordsList)
+        let wordSplited = word.split('')
+        let firstCharIndex = generateFirstCharIndex(wordSplited, numCols)
+        let lastCharIndex = firstCharIndex + wordSplited.length
+        let wordIndexCounter = 0
+        for (let i = firstCharIndex; i < lastCharIndex; i++) {
+          tableToPlaceWords[rowToPlaceWord][i] = wordSplited[wordIndexCounter]
+          wordIndexCounter++
+        }
+        rowsWithWords.push(rowToPlaceWord)
+        wordsPlaced++
       }
-      rowsWithWords.push(rowToPlaceWord)
-      wordsPlaced++
     }
   }
+
   return tableToPlaceWords
 }
 
