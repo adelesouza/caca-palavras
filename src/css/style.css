@@ -108,12 +108,10 @@ td {
   font-size: 15px;
   box-shadow: 5px 5px white;
   background-color: #ffea7a;
-  /* padding: 10px 4px 0px 4px; */
   justify-content: center;
   align-items: center;
 }
 #description {
-  //color: white;
   color: #ffab2c;
 }
 #words {

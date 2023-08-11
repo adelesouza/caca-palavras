@@ -30,14 +30,18 @@ function revealTable() {
   }
   const dataTable = createDataTable(numRows, numCols, wordsToPlace)
   const table = createHtmlTable(dataTable)
-  adjustFrontElements(numRows, numCols, wordsToPlace)
+  adjustFrontElements(numRows, numCols)
+  createWordsBoard(wordsToPlace)
   appendTableToContainer(table)
 }
 
-function adjustFrontElements(numRows, numCols, wordsToPlace) {
+function adjustFrontElements(numRows, numCols) {
   document.querySelector('.caca-palavras').style.display = 'flex'
   document.getElementById('numbers').innerHTML =
     '<h2 id="L">' + numRows + '</h2><h2>x</h2><h2 id="C">' + numCols + '</h2>'
+}
+
+function createWordsBoard(wordsToPlace) {
   const words = document.getElementById('words')
   while (words.firstChild) {
     words.removeChild(words.firstChild)

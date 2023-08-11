@@ -30,22 +30,22 @@ export function placeWords(wordsToPlace, wordsQuantity, tableToPlaceWords) {
   let numCols = tableToPlaceWords[0].length
   const rowsWithWords = []
   let wordsPlaced = 0
-  for (let j = 0; wordsPlaced < wordsQuantity; j++) {
-    while (wordsPlaced < wordsQuantity) {
-      const rowToPlaceWord = getRandomRowToPlaceWord(numRows)
-      if (!rowsWithWords.includes(rowToPlaceWord)) {
-        let word = wordsToPlace[j] //getRandomWord(availableWordsList)
-        let wordSplited = word.split('')
-        let firstCharIndex = generateFirstCharIndex(wordSplited, numCols)
-        let lastCharIndex = firstCharIndex + wordSplited.length
-        let wordIndexCounter = 0
-        for (let i = firstCharIndex; i < lastCharIndex; i++) {
-          tableToPlaceWords[rowToPlaceWord][i] = wordSplited[wordIndexCounter]
-          wordIndexCounter++
-        }
-        rowsWithWords.push(rowToPlaceWord)
-        wordsPlaced++
+  let j = 0
+  while (wordsPlaced < wordsQuantity) {
+    const rowToPlaceWord = getRandomRowToPlaceWord(numRows)
+    if (!rowsWithWords.includes(rowToPlaceWord)) {
+      let word = wordsToPlace[j]
+      j++
+      let wordSplited = word.split('')
+      let firstCharIndex = generateFirstCharIndex(wordSplited, numCols)
+      let lastCharIndex = firstCharIndex + wordSplited.length
+      let wordIndexCounter = 0
+      for (let i = firstCharIndex; i < lastCharIndex; i++) {
+        tableToPlaceWords[rowToPlaceWord][i] = wordSplited[wordIndexCounter]
+        wordIndexCounter++
       }
+      rowsWithWords.push(rowToPlaceWord)
+      wordsPlaced++
     }
   }
 
