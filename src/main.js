@@ -33,6 +33,7 @@ function revealTable() {
   adjustFrontElements(numRows, numCols)
   createWordsBoard(wordsToPlace)
   appendTableToContainer(table)
+  initializeGame()
 }
 
 function adjustFrontElements(numRows, numCols) {
@@ -72,4 +73,17 @@ function getRandomWord(availableWordsList) {
 
 export function calculateWordsQuantity(numRows, rowsPerWord = 3) {
   return Math.floor(numRows / rowsPerWord)
+}
+
+function initializeGame() {
+  const letters = document.getElementsByTagName('button')
+  for (let i = 1; i < letters.length; i++) {
+    letters[i].addEventListener('click', function () {
+      selectLetter(letters[i])
+    })
+  }
+}
+
+function selectLetter(button) {
+  button.classList.toggle('selected')
 }

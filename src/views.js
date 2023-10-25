@@ -4,7 +4,7 @@ export function createHtmlTable(dataTable) {
     const tr = document.createElement('tr')
     table.appendChild(tr)
     for (let j = 0; j < dataTable[i].length; j++) {
-      const td = document.createElement('td')
+      const td = document.createElement('button')
       const char = document.createTextNode(dataTable[i][j])
       td.appendChild(char)
       tr.appendChild(td)
