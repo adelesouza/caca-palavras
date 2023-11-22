@@ -14,12 +14,21 @@
     />
   </head>
   <body>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <div class="form">
       <h2 id="form-title">Escolha o tamanho do seu caça-palavras</h2>
       <div class="inputs">
         <input type="number" id="num_rows" value="10" />
         x
         <input type="number" id="num_cols" value="15" />
+      </div>
+      <h2 id="form-title">Escolha a categoria do seu caça-palavras:</h2>
+      <div>
+        <select name="select" id="category">
+          <option value="comida" selected>Comidas</option>
+          <option value="objeto">Objetos</option>
+          <option value="esporte">Esportes</option>
+        </select>
       </div>
       <button id="btn">Gerar Caça-Palavras</button>
     </div>
