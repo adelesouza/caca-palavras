@@ -54,6 +54,11 @@ h2 {
   margin-bottom: 10px;
 }
 
+#category {
+  width: 100px;
+  margin-bottom: 20px;
+}
+
 /* caca-palavras */
 .caca-palavras {
   /* display: flex; */

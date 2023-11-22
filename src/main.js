@@ -1,29 +1,68 @@
 import { createDataTable } from './models.js'
 import { createHtmlTable } from './views.js'
-
 document.getElementById('btn').addEventListener('click', revealTable)
 
-const words = [
-  'palheta',
-  'uva',
-  'musica',
-  'palco',
-  'rua',
-  'casa',
-  'pincel',
-  'carro',
-  'caixa',
-  'foto',
-  'flor',
-  'luz'
-]
+let words = []
+const food = []
+const sports = []
+const object = []
+
+getWords()
+
+function getWords() {
+  axios
+  .get('http://localhost:3030/palavra/Comida')
+  .then(function (response) {
+    let responser = response.data
+    for (let i = 0; i < responser.length; i++) {
+      food.push(responser[i].Palavra)
+    }
+  })
+  .catch(function (err) {
+      console.log(err.message)
+  })
+
+  axios
+  .get('http://localhost:3030/palavra/Esporte')
+  .then(function (response) {
+    let responser = response.data
+    for (let i = 0; i < responser.length; i++) {
+      sports.push(responser[i].Palavra)
+    }
+  })
+  .catch(function (err) {
+      console.log(err.message)
+  })
+
+  axios
+  .get('http://localhost:3030/palavra/Objetos')
+  .then(function (response) {
+    let responser = response.data
+    for (let i = 0; i < responser.length; i++) {
+      object.push(responser[i].Palavra)
+    }
+  })
+  .catch(function (err) {
+      console.log(err.message)
+  })
+}
 
 function revealTable() {
   const numRows = document.getElementById('num_rows').value
   const numCols = document.getElementById('num_cols').value
   const wordsQuantity = calculateWordsQuantity(numRows)
   const wordsToPlace = []
-  const availableWordsList = [...words]
+
+  const category = document.getElementById('category').value
+  if (category == "comida") {
+    words = [...food]
+  }  if (category == "objeto") {
+    words = [...object]
+  }  if (category == "esporte") {
+    words = [...sports]
+  }
+
+  let availableWordsList = [...words]
   while (wordsToPlace.length < wordsQuantity) {
     let word = getRandomWord(availableWordsList)
     wordsToPlace.push(word)
@@ -111,9 +150,11 @@ function checkSelecteds() {
 }
 
 function crossWordOff(wordSelected) {
-  const words = document.getElementById('words')
-  const wordsList = words.childNodes
+  const wordsCointainer = document.getElementById('words')
+  const wordsList = wordsCointainer.childNodes
+
   for (let i=0; i < wordsList.length; i++) {
+    console.log(wordSelected, wordsList[i].textContent)
     if (wordSelected == wordsList[i].textContent) {
       wordsList[i].style.textDecoration = "line-through"
     }
