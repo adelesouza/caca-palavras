@@ -33,6 +33,7 @@ function revealTable() {
   adjustFrontElements(numRows, numCols)
   createWordsBoard(wordsToPlace)
   appendTableToContainer(table)
+  initializeGame()
 }
 
 function adjustFrontElements(numRows, numCols) {
@@ -48,11 +49,16 @@ function createWordsBoard(wordsToPlace) {
   }
   for (let i = 0; i < wordsToPlace.length; i++) {
     if (i == wordsToPlace.length - 1) {
-      const word = document.createTextNode(wordsToPlace[i])
-      words.appendChild(word)
+      const h4 = document.createElement('h4')
+      h4.textContent = wordsToPlace[i]
+      words.appendChild(h4)
     } else {
-      const word = document.createTextNode(wordsToPlace[i] + ' - ')
-      words.appendChild(word)
+      const h4 = document.createElement('h4')
+      const traco = document.createElement('h4')
+      h4.textContent = wordsToPlace[i]
+      traco.textContent  = " - "
+      words.appendChild(h4)
+      words.appendChild(traco)
     }
   }
 }
@@ -72,4 +78,44 @@ function getRandomWord(availableWordsList) {
 
 export function calculateWordsQuantity(numRows, rowsPerWord = 3) {
   return Math.floor(numRows / rowsPerWord)
+}
+
+function initializeGame() {
+  const letters = document.getElementsByTagName('button')
+  for (let i = 1; i < letters.length; i++) {
+    letters[i].addEventListener('click', function () {
+      selectLetter(letters[i])
+    })
+  }
+}
+
+function selectLetter(button) {
+  button.classList.toggle('selected')
+  checkSelecteds()
+}
+
+function checkSelecteds() {
+  const letters = document.getElementsByTagName('button')
+  let wordSelected = []
+  for (let i = 1; i < letters.length; i++) {
+    if (letters[i].classList.contains('selected')) {
+      wordSelected.push(letters[i].textContent)
+      for (let j=0; j < words.length; j++) {
+        if (wordSelected.join('') == words[j]) {
+          crossWordOff(wordSelected.join(''))
+          wordSelected = []
+        }
+      }
+    }
+  }
+}
+
+function crossWordOff(wordSelected) {
+  const words = document.getElementById('words')
+  const wordsList = words.childNodes
+  for (let i=0; i < wordsList.length; i++) {
+    if (wordSelected == wordsList[i].textContent) {
+      wordsList[i].style.textDecoration = "line-through"
+    }
+  }
 }
