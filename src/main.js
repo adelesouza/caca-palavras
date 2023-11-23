@@ -1,11 +1,18 @@
 import { createDataTable } from './models.js'
 import { createHtmlTable } from './views.js'
-document.getElementById('btn').addEventListener('click', revealTable)
 
+document.getElementById('btn').addEventListener('click', revealTable)
+document.getElementById('btn-reinicia').addEventListener('click', () => {
+  location.reload()
+})
+
+//global variables
 let words = []
 const food = []
 const sports = []
 const object = []
+let wordsQuantity = 0
+let wordsFounded = []
 
 getWords()
 
@@ -50,7 +57,7 @@ function getWords() {
 function revealTable() {
   const numRows = document.getElementById('num_rows').value
   const numCols = document.getElementById('num_cols').value
-  const wordsQuantity = calculateWordsQuantity(numRows)
+  wordsQuantity = calculateWordsQuantity(numRows)
   const wordsToPlace = []
 
   const category = document.getElementById('category').value
@@ -154,9 +161,20 @@ function crossWordOff(wordSelected) {
   const wordsList = wordsCointainer.childNodes
 
   for (let i=0; i < wordsList.length; i++) {
-    console.log(wordSelected, wordsList[i].textContent)
     if (wordSelected == wordsList[i].textContent) {
       wordsList[i].style.textDecoration = "line-through"
     }
+  }
+
+  if (! wordsFounded.includes(wordSelected)) {
+    wordsFounded.push(wordSelected)
+  }
+
+  if (wordsFounded.length >= wordsQuantity) {
+    let confettiSettings = { target: 'my-canvas' };
+    let confetti = new ConfettiGenerator(confettiSettings);
+    confetti.render();
+
+    document.querySelector('.vitoria').style.display = 'block'
   }
 }

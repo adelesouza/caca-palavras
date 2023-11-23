@@ -37,7 +37,7 @@ h2 {
   margin-bottom: 10px;
 }
 
-#btn {
+#btn, #btn-reinicia {
   border: none;
   padding: 5px;
   text-decoration: none;
@@ -131,6 +131,21 @@ button {
   justify-content: space-between;
   align-items: center;
 }
+.vitoria {
+  display: none;
+  text-align: center;
+}
+#my-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vw;
+  z-index: 100000;
+  visibility: visible;
+  pointer-events: none;
+}
+
 @media (max-width: 800px) {
   body {
     flex-direction: column;
